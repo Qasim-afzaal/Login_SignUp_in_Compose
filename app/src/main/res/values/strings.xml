@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Login_SignUp_Compose</string>
+    <string name="Hello">Hey There,</string>
+    <string name="Create">Create Account</string>
+</resources>
