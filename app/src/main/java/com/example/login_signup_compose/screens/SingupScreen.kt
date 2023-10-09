@@ -1,5 +1,6 @@
 package com.example.login_signup_compose.screens
 
+import android.transition.Scene
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,8 @@ import com.example.login_signup_compose.components.TextField
 import com.example.login_signup_compose.components.checkBox
 import com.example.login_signup_compose.components.headingTextComponent
 import com.example.login_signup_compose.components.normakTextComponent
+import com.example.login_signup_compose.navigation.PostOfficeRoutes
+import com.example.login_signup_compose.navigation.Screen
 
 @Composable
 fun signUpScreen(){
@@ -39,7 +42,9 @@ fun signUpScreen(){
           TextField("Email")
           Spacer(modifier = Modifier.height(10.dp))
           PassTextField("Password")
-          checkBox(value = "Terms and Condition")
+          checkBox(value = "Terms and Condition", onTextSelected = {
+              PostOfficeRoutes.navigateScreen(Screen.TermsAndCondtion)
+          })
       }
       
       }

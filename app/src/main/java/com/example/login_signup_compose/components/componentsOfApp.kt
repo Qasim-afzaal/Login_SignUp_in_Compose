@@ -173,7 +173,7 @@ fun PassTextField(label:String){
 }
 
 @Composable
-fun checkBox(value: String){
+fun checkBox(value: String,onTextSelected:(String)->Unit){
     Row(modifier = Modifier
         .fillMaxWidth()
         .heightIn(58.dp),
@@ -185,12 +185,12 @@ fun checkBox(value: String){
 Checkbox(checked =check.value , onCheckedChange ={
      check.value = !check.value
 } )
-       ClickableText(value = value)
+       ClickableText(value = value,onTextSelected)
 
     }
 }
 @Composable
-fun ClickableText(value: String) {
+fun ClickableText(value: String, onTextSelected: (String) -> Unit) {
     val byContaining = "By Containing "
     val terms = "Terms and Condition "
     val information = "further information "
@@ -214,22 +214,22 @@ fun ClickableText(value: String) {
         }
     }
 
-    val textLayoutResult = remember { mutableStateOf<TextLayoutResult?>(null) }
-
     ClickableText(
         text = annotatedString,
         onClick = { offset ->
             val annotations = annotatedString.getStringAnnotations(
-                tag = "tag", // Change to the correct tag you want to check
+                tag = terms, // Change to the correct tag you want to check
                 start = offset,
                 end = offset
-            )
-            if (annotations.isNotEmpty()) {
-                val annotation = annotations[0]
-                Log.d("Clickable", "Clicked: ${annotation.item}")
+            ).firstOrNull()
+            if (annotations != null) {
+                val annotation = annotations.item
+                Log.d("Clickable", annotation)
+                onTextSelected(annotation)
             }
         }
     )
 }
+
 
 
