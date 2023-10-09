@@ -16,8 +16,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.login_signup_compose.R
+import com.example.login_signup_compose.components.ClickableLoginText
+import com.example.login_signup_compose.components.DividerTextComponent
 import com.example.login_signup_compose.components.PassTextField
 import com.example.login_signup_compose.components.TextField
+import com.example.login_signup_compose.components.buttonComponent
 import com.example.login_signup_compose.components.checkBox
 import com.example.login_signup_compose.components.headingTextComponent
 import com.example.login_signup_compose.components.normakTextComponent
@@ -44,8 +47,22 @@ fun signUpScreen(){
           PassTextField("Password")
           checkBox(value = "Terms and Condition", onTextSelected = {
               PostOfficeRoutes.navigateScreen(Screen.TermsAndCondtion)
-          })
+          }
+          )
+
+          Spacer(modifier = Modifier.height(40.dp))
+
+
+          buttonComponent("Next")
+          Spacer(modifier = Modifier.height(20.dp))
+
+          DividerTextComponent()
+          ClickableLoginText(onTextSelected = {
+              PostOfficeRoutes.navigateScreen(Screen.TermsAndCondtion)
+          } )
       }
+
+
       
       }
 }
